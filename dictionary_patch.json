@@ -1,0 +1,126 @@
+{
+  "idents": {
+    "AA": "\\bb{A}",
+    "Alpha": "A",
+    "BB": "\\bb{B}",
+    "Beta": "B",
+    "CC": "\\bb{C}",
+    "Chi": "\\Chi",
+    "DD": "\\bb{D}",
+    "Delta": "\\Delta",
+    "EE": "\\bb{E}",
+    "Epsilon": "E",
+    "Eta": "H",
+    "FF": "\\bb{F}",
+    "GG": "\\bb{G}",
+    "Gamma": "\\Gamma",
+    "HH": "\\bb{H}",
+    "II": "\\bb{I}",
+    "Im": "\\Im",
+    "Iota": "I",
+    "JJ": "\\bb{J}",
+    "KK": "\\bb{K}",
+    "Kappa": "K",
+    "LL": "\\bb{L}",
+    "Lambda": "\\Lambda",
+    "MM": "\\bb{M}",
+    "Mu": "M",
+    "NN": "\\bb{N}",
+    "Nu": "N",
+    "OO": "\\bb{O}",
+    "Omega": "\\Omega",
+    "Omicron": "O",
+    "PP": "\\bb{P}",
+    "Phi": "\\Phi",
+    "Pi": "\\Pi",
+    "Psi": "\\Psi",
+    "QQ": "\\bb{Q}",
+    "RR": "\\bb{R}",
+    "Re": "\\Re",
+    "Rho": "P",
+    "SS": "\\bb{S}",
+    "Sigma": "\\Sigma",
+    "TT": "\\bb{T}",
+    "Tau": "T",
+    "Theta": "\\Theta",
+    "UU": "\\bb{U}",
+    "Upsilon": "\\Upsilon",
+    "VV": "\\bb{V}",
+    "WW": "\\bb{W}",
+    "XX": "\\bb{X}",
+    "Xi": "\\Xi",
+    "YY": "\\bb{Y}",
+    "ZZ": "\\bb{Z}",
+    "Zeta": "Z",
+    "acute": "\\acute",
+    "alef": "\\aleph",
+    "alpha": "\\alpha",
+    "amp": "\\&",
+    "and": "\\wedge",
+    "angle": "\\angle",
+    "beta": "\\beta",
+    "gamma": "\\gamma",
+    "delta": "\\delta",
+    "epsilon": "\\epsilon",
+    "zeta": "\\zeta",
+    "eta": "\\eta",
+    "theta": "\\theta",
+    "iota": "\\iota",
+    "kappa": "\\kappa",
+    "lambda": "\\lambda",
+    "mu": "\\mu",
+    "nu": "\\nu",
+    "xi": "\\xi",
+    "omicron": "o",
+    "pi": "\\pi",
+    "rho": "\\rho",
+    "sigma": "\\sigma",
+    "tau": "\\tau",
+    "upsilon": "\\upsilon",
+    "phi": "\\phi",
+    "chi": "\\chi",
+    "psi": "\\psi",
+    "omega": "\\omega",
+    "lt": "<",
+    "gt": ">"
+  },
+  "modules": {
+    "acute": {
+      "idents": {
+        "double": "\\unicode{x02DD}"
+      },
+      "modules": {}
+    },
+    "amp": {
+      "idents": {
+        "inv": "⅋"
+      },
+      "modules": {}
+    },
+    "and": {
+      "idents": {
+        "big": "\\bigwedge",
+        "curly": "\\curlywedge"
+      },
+      "modules": {}
+    },
+    "angle": {
+      "idents": {
+        "l": "\\langle",
+        "r": "\\rangle"
+      },
+      "modules": {}
+    },
+    "subset": {
+      "idents": {},
+      "modules": {
+        "eq": {
+          "idents": {
+            "not": "\\nsubseteq"
+          },
+          "modules": {}
+        }
+      }
+    }
+  }
+}

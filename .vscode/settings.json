@@ -1,0 +1,18 @@
+{
+  "cSpell.words": [
+    "ecow",
+    "Emph",
+    "Hyph",
+    "idents",
+    "Mathlog",
+    "Parbreak",
+    "uneat",
+    "unscanny"
+  ],
+  "rust-analyzer.linkedProjects": [".\\Cargo.toml"],
+  "cSpell.ignoreWords": ["cxxiii", "ttps"],
+  "[python]": {
+    "editor.defaultFormatter": "ms-python.black-formatter"
+  },
+  "python.formatting.provider": "none"
+}
