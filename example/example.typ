@@ -1,48 +1,64 @@
-#import "../style.typ"
-#import style: *
+// set mathlog style
 
-#show strong: set text(fill: strong_color)
+#import "../style/mathlog_style.typ": *
+
 
 // 
 
-= 加群の Gröbner 基底
+= Gröbner 基底
 
-- (TODO: 加群項順序の説明)
-- (TODO: 加群の Gröbner 基底の説明)
-- (TODO: 消去定理の説明)
+== 単項式順序
 
-= Koszul 複体
+$K$ を体，$R = K[X_1, ..., X_n]$ を $K$-上 $n$ 変数多項式環とする．
+$R$ の単項式全体の集合を $cal(M)_R$ とおく．
+$cal(M)_R$ は乗法に関して可換モノイドをなす．
 
-#def[
-    多項式環 $R = k[X_1, ..., X_n]$, その上の自由加群 $E = ⨁_(i=1)^l R bold(e)_i$ と $R$-加群準同型写像 $φ: E → R$ に対し，
-    $
-        K_j(φ) := ⋀^j E = ⨁_(i_1 < ... < i_j) bold(e)_(i_1) ∧ ... ∧ bold(e)_(i_j) R, \
-        d_j: K_(j+1)(φ) → K_j(φ): bold(e)_(i_1) ∧ ... ∧ bold(e)_(i_(j+1)) ↦ ∑_(k=1)^(j+1) (-1)^(k+1) φ(bold(e)_k) bold(e)_(i_1) ∧ ... ∧ bold(e)_(i_(k-1)) ∧ bold(e)_(i_(k+1)) ∧ ... ∧ bold(e)_(i_(j+1))
-    $
-    と定めて得られる複体 $K_∙(φ)$ を $φ$ の *Koszul 複体* という．
+#def(title: "単項式順序")[
+    多項式環 $R$ の *単項式順序* (_monomial order_) とは，$cal(M)_R$ 上の全順序 $prec.eq$ であって，任意の $mu, mu', nu in cal(M)_R$ に対して以下を満たすもののことである：
+    
+    1. $1 prec.eq mu$;
+    2. $mu prec.eq mu' ==> mu dot nu prec.eq mu' dot nu$.
 ]
 
-これは確かに複体になる．
-実際，
-$
-    &quad d_j (d_(j+1) (bold(e)_(i_1, ..., i_(j+2)))) \
-    &= d_j (∑_(k=1)^(j+2) (-1)^(k+1) φ(bold(e)_k) bold(e)_(i_1) ∧ ... ∧ bold(e)_(i_(k-1)) ∧ bold(e)_(i_(k+1)) ∧ ... ∧ bold(e)_(i_(j+2))) \
-    &= ∑_(k < k') (-1)^(k+k'+1) φ(bold(e)_k) φ(bold(e)_(k')) bold(e)_(i_1) ∧ ... ∧ bold(e)_(i_(k-1)) ∧ bold(e)_(i_(k+1)) ∧ ... ∧ bold(e)_(i_(k'-1)) ∧ bold(e)_(i_(k'+1)) ∧ ... ∧ bold(e)_(i_(j+2)) \
-    &+ ∑_(k > k') (-1)^(k+k') φ(bold(e)_k) φ(bold(e)_(k')) bold(e)_(i_1) ∧ ... ∧ bold(e)_(i_(k-1)) ∧ bold(e)_(i_(k+1)) ∧ ... ∧ bold(e)_(i_(k'-1)) ∧ bold(e)_(i_(k'+1)) ∧ ... ∧ bold(e)_(i_(j+2)) \
-    &= 0
-$
-である．
+#prop[
+    任意の単項式順序は整礎である．
+]
 
-以下，空の外積を $bb(1) := ⋀ ∅ ∈ K_0(φ)$ と書く．
+#prf[
+    略．
+]
 
-#ex[
-    $n = 2$, $φ: E → R: bold(e)_1 ↦ X_1^2, bold(e)_2 ↦ X_1 X_2$ のとき，
+== 先頭イデアル
+
+以下，多項式環 $R$ の単項式順序 $prec.eq$ を固定する．
+
+#def[
+    多項式 $f in R$ を
     $
-        K_0(φ) = bb(1) R, \
-        K_1(φ) = E = bold(e)_1 R ⊕ bold(e)_2 R, \
-        K_2(φ) = E ∧ E = bold(e)_1 ∧ bold(e)_2 R, \
-        d_0: K_1(φ) → K_0(φ): bold(e)_1 ↦ X_1^2 bb(1), space bold(e)_2 ↦ X_1 X_2 bb(1), \
-        d_1: K_2(φ) → K_1(φ): bold(e)_1 ∧ bold(e)_2 ↦ X_1^2 bold(e)_2 - X_1 X_2 bold(e)_1
+        f = sum_(mu in cal(M)_R) c_mu dot mu
     $
-    より，Koszul 複体は以下のようになる：
+    と表すとき，$c_mu eq.not 0$ となる $mu in cal(M)_R$ 全体の集合を
+    $
+        "supp"_R f := {mu in cal(M)_R | c_mu eq.not 0}
+    $
+    と書き，$f$ の *台* (_support_) と呼ぶ．
+    多項式の台は有限集合であることに注意する．
+    $f$ の台の，$prec.eq$ に関する最大元 $mu$ を $prec.eq$ に関する $f$ の *先頭単項式* (_initial monomial_) と呼び，$"in"_prec.eq f$ と書く．
+    $c_mu$ を $prec.eq$ に関する $f$ の *先頭項係数* (_initial coefficient_)，$c_mu dot mu$ を $prec.eq$ に関する $f$ の *先頭項* (_initial term_) と呼び，それぞれ $"inic"_prec.eq f, space "init"_prec.eq f$ と書く．
+]
+
+#def[
+    多項式環 $R$ のイデアル $I$ に対し，イデアル
+    $
+        "in"_prec.eq I := angle.l "in"_prec.eq f | f in I angle.r
+    $
+    を $I$ の *先頭イデアル* (_initial ideal_) と呼ぶ．
+]
+
+#rem[
+    $f_1, ..., f_n in I$ が $I$ を生成するとき，$"in"_prec.eq f_1, ..., "in"_prec.eq f_n in "in"_prec.eq I$ は $"in"_prec.eq I$ を生成するとは限らない．
+]
+
+#def[
+    $R$ のイデアル $I$ の生成元 $f_1, ..., f_n in I$ が $I$ の *Gröbner 基底* であるとは，先頭単項式 $"in"_prec.eq f_1, ..., "in"_prec.eq f_n in "in"_prec.eq I$ が先頭イデアル $"in"_prec.eq I$ を生成することをいう．
 ]

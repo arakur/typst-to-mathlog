@@ -1,2 +1,5 @@
 /target
-/.vscode/*
+/.vscode
+/.mypy_cache
+/release
+/release.zip

@@ -1,0 +1,1817 @@
+{
+    "idents": {
+        "AA": "\\bb{A}",
+        "Alpha": "A",
+        "BB": "\\bb{B}",
+        "Beta": "B",
+        "CC": "\\bb{C}",
+        "Chi": "\\Chi",
+        "DD": "\\bb{D}",
+        "Delta": "\\Delta",
+        "EE": "\\bb{E}",
+        "Epsilon": "E",
+        "Eta": "H",
+        "FF": "\\bb{F}",
+        "GG": "\\bb{G}",
+        "Gamma": "\\Gamma",
+        "HH": "\\bb{H}",
+        "II": "\\bb{I}",
+        "Im": "\\Im",
+        "Iota": "I",
+        "JJ": "\\bb{J}",
+        "KK": "\\bb{K}",
+        "Kai": "Ϗ",
+        "Kappa": "K",
+        "LL": "\\bb{L}",
+        "Lambda": "\\Lambda",
+        "MM": "\\bb{M}",
+        "Mu": "M",
+        "NN": "\\bb{N}",
+        "Nu": "N",
+        "OO": "\\bb{O}",
+        "Omega": "\\Omega",
+        "Omicron": "O",
+        "PP": "\\bb{P}",
+        "Phi": "\\Phi",
+        "Pi": "\\Pi",
+        "Psi": "\\Psi",
+        "QQ": "\\bb{Q}",
+        "RR": "\\bb{R}",
+        "Re": "\\Re",
+        "Rho": "P",
+        "SS": "\\bb{S}",
+        "Sigma": "\\Sigma",
+        "TT": "\\bb{T}",
+        "Tau": "T",
+        "Theta": "\\Theta",
+        "UU": "\\bb{U}",
+        "Upsilon": "\\Upsilon",
+        "VV": "\\bb{V}",
+        "WW": "\\bb{W}",
+        "XX": "\\bb{X}",
+        "Xi": "\\Xi",
+        "YY": "\\bb{Y}",
+        "ZZ": "\\bb{Z}",
+        "Zeta": "Z",
+        "acute": "\\acute",
+        "alef": "\\aleph",
+        "alpha": "\\alpha",
+        "amp": "\\&",
+        "and": "\\wedge",
+        "angle": "\\angle",
+        "angstrom": "Å",
+        "approx": "≈",
+        "at": "@",
+        "backslash": "\\",
+        "ballot": "☐",
+        "because": "∵",
+        "bet": "ב",
+        "beta": "\\beta",
+        "bitcoin": "₿",
+        "bot": "⊥",
+        "breve": "˘",
+        "caret": "‸",
+        "caron": "ˇ",
+        "checkmark": "✓",
+        "chi": "\\chi",
+        "co": "℅",
+        "colon": ":",
+        "comma": ",",
+        "complement": "∁",
+        "compose": "∘",
+        "convolve": "∗",
+        "copyright": "©",
+        "dagger": "†",
+        "degree": "°",
+        "delta": "\\delta",
+        "diaer": "¨",
+        "diameter": "⌀",
+        "diff": "∂",
+        "div": "÷",
+        "divides": "∣",
+        "dollar": "$",
+        "ell": "ℓ",
+        "epsilon": "\\epsilon",
+        "eq": "=",
+        "eta": "\\eta",
+        "euro": "€",
+        "excl": "!",
+        "exists": "∃",
+        "floral": "❦",
+        "forall": "∀",
+        "franc": "₣",
+        "gamma": "\\gamma",
+        "gimel": "ג",
+        "grave": "`",
+        "gt": ">",
+        "hash": "#",
+        "hat": "^",
+        "hyph": "‐",
+        "ident": "≡",
+        "in": "∈",
+        "infinity": "∞",
+        "integral": "∫",
+        "interrobang": "‽",
+        "iota": "\\iota",
+        "join": "⨝",
+        "kai": "ϗ",
+        "kappa": "\\kappa",
+        "kelvin": "K",
+        "lambda": "\\lambda",
+        "laplace": "∆",
+        "lira": "₺",
+        "lt": "<",
+        "macron": "¯",
+        "maltese": "✠",
+        "minus": "−",
+        "models": "⊧",
+        "mu": "\\mu",
+        "multimap": "⊸",
+        "nabla": "∇",
+        "not": "¬",
+        "nothing": "∅",
+        "nu": "\\nu",
+        "ohm": "Ω",
+        "omega": "\\omega",
+        "omicron": "o",
+        "oo": "∞",
+        "or": "∨",
+        "parallel": "∥",
+        "percent": "%",
+        "permille": "‰",
+        "perp": "⟂",
+        "peso": "₱",
+        "phi": "\\phi",
+        "pi": "\\pi",
+        "pilcrow": "¶",
+        "planck": "ℎ",
+        "plus": "+",
+        "pound": "£",
+        "prec": "≺",
+        "prime": "′",
+        "product": "∏",
+        "prop": "∝",
+        "psi": "\\psi",
+        "qed": "∎",
+        "quest": "?",
+        "ratio": "∶",
+        "refmark": "※",
+        "rho": "\\rho",
+        "ruble": "₽",
+        "rupee": "₹",
+        "sect": "∩",
+        "section": "§",
+        "semi": ";",
+        "servicemark": "℠",
+        "shin": "ש",
+        "sigma": "\\sigma",
+        "slash": "/",
+        "smash": "⨳",
+        "space": "",
+        "subset": "⊂",
+        "succ": "≻",
+        "sum": "∑",
+        "supset": "⊃",
+        "tau": "\\tau",
+        "therefore": "∴",
+        "theta": "\\theta",
+        "times": "×",
+        "top": "⊤",
+        "union": "∪",
+        "upsilon": "\\upsilon",
+        "without": "∖",
+        "wj": "⁠",
+        "won": "₩",
+        "wreath": "≀",
+        "xi": "\\xi",
+        "yen": "¥",
+        "zeta": "\\zeta",
+        "zwj": "‍",
+        "zwnj": "‌",
+        "zws": "​",
+        "quad": "\\quad",
+        "dot": "\\cdot"
+    },
+    "modules": {
+        "acute": {
+            "idents": {
+                "double": "\\unicode{x02DD}"
+            },
+            "modules": {}
+        },
+        "amp": {
+            "idents": {
+                "inv": "⅋"
+            },
+            "modules": {}
+        },
+        "and": {
+            "idents": {
+                "big": "\\bigwedge",
+                "curly": "\\curlywedge",
+                "dot": "⟑",
+                "double": "⩓"
+            },
+            "modules": {}
+        },
+        "angle": {
+            "idents": {
+                "l": "\\langle",
+                "r": "\\rangle",
+                "acute": "⦟",
+                "arc": "∡",
+                "rev": "⦣",
+                "right": "∟",
+                "spatial": "⟀",
+                "spheric": "∢"
+            },
+            "modules": {
+                "l": {
+                    "idents": {
+                        "double": "《"
+                    },
+                    "modules": {}
+                },
+                "r": {
+                    "idents": {
+                        "double": "》"
+                    },
+                    "modules": {}
+                },
+                "arc": {
+                    "idents": {
+                        "rev": "⦛"
+                    },
+                    "modules": {}
+                },
+                "right": {
+                    "idents": {
+                        "rev": "⯾",
+                        "arc": "⊾",
+                        "dot": "⦝",
+                        "sq": "⦜"
+                    },
+                    "modules": {}
+                },
+                "spheric": {
+                    "idents": {
+                        "rev": "⦠",
+                        "top": "⦡"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "approx": {
+            "idents": {
+                "eq": "≊",
+                "not": "≉"
+            },
+            "modules": {}
+        },
+        "arrow": {
+            "idents": {
+                "r": "→",
+                "l": "←",
+                "t": "↑",
+                "b": "↓",
+                "tr": "↗",
+                "br": "↘",
+                "tl": "↖",
+                "bl": "↙",
+                "ccw": "↺",
+                "cw": "↻",
+                "zigzag": "↯"
+            },
+            "modules": {
+                "r": {
+                    "idents": {
+                        "bar": "↦",
+                        "curve": "⤷",
+                        "dashed": "⇢",
+                        "dotted": "⤑",
+                        "double": "⇒",
+                        "filled": "➡",
+                        "hook": "↪",
+                        "long": "⟶",
+                        "loop": "↬",
+                        "not": "↛",
+                        "quad": "⭆",
+                        "squiggly": "⇝",
+                        "stop": "⇥",
+                        "stroked": "⇨",
+                        "tail": "↣",
+                        "triple": "⇛",
+                        "twohead": "↠",
+                        "wave": "↝"
+                    },
+                    "modules": {
+                        "long": {
+                            "idents": {
+                                "bar": "⟼",
+                                "squiggly": "⟿"
+                            },
+                            "modules": {}
+                        },
+                        "double": {
+                            "idents": {
+                                "bar": "⤇",
+                                "long": "⟹",
+                                "not": "⇏"
+                            },
+                            "modules": {
+                                "long": {
+                                    "idents": {
+                                        "bar": "⟾"
+                                    },
+                                    "modules": {}
+                                }
+                            }
+                        },
+                        "twohead": {
+                            "idents": {
+                                "bar": "⤅"
+                            },
+                            "modules": {}
+                        }
+                    }
+                },
+                "l": {
+                    "idents": {
+                        "bar": "↤",
+                        "curve": "⤶",
+                        "dashed": "⇠",
+                        "dotted": "⬸",
+                        "double": "⇐",
+                        "filled": "⬅",
+                        "hook": "↩",
+                        "long": "⟵",
+                        "loop": "↫",
+                        "not": "↚",
+                        "quad": "⭅",
+                        "squiggly": "⇜",
+                        "stop": "⇤",
+                        "stroked": "⇦",
+                        "tail": "↢",
+                        "triple": "⇚",
+                        "twohead": "↞",
+                        "wave": "↜",
+                        "r": "↔"
+                    },
+                    "modules": {
+                        "double": {
+                            "idents": {
+                                "bar": "⤆",
+                                "long": "⟸",
+                                "not": "⇍"
+                            },
+                            "modules": {
+                                "long": {
+                                    "idents": {
+                                        "bar": "⟽"
+                                    },
+                                    "modules": {}
+                                }
+                            }
+                        },
+                        "long": {
+                            "idents": {
+                                "bar": "⟻",
+                                "squiggly": "⬳"
+                            },
+                            "modules": {}
+                        },
+                        "twohead": {
+                            "idents": {
+                                "bar": "⬶"
+                            },
+                            "modules": {}
+                        },
+                        "r": {
+                            "idents": {
+                                "double": "⇔",
+                                "filled": "⬌",
+                                "long": "⟷",
+                                "not": "↮",
+                                "stroked": "⬄",
+                                "wave": "↭"
+                            },
+                            "modules": {
+                                "double": {
+                                    "idents": {
+                                        "long": "⟺",
+                                        "not": "⇎"
+                                    },
+                                    "modules": {}
+                                }
+                            }
+                        }
+                    }
+                },
+                "t": {
+                    "idents": {
+                        "bar": "↥",
+                        "curve": "⤴",
+                        "dashed": "⇡",
+                        "double": "⇑",
+                        "filled": "⬆",
+                        "quad": "⟰",
+                        "stop": "⤒",
+                        "stroked": "⇧",
+                        "triple": "⤊",
+                        "twohead": "↟",
+                        "b": "↕"
+                    },
+                    "modules": {
+                        "b": {
+                            "idents": {
+                                "double": "⇕",
+                                "filled": "⬍",
+                                "stroked": "⇳"
+                            },
+                            "modules": {}
+                        }
+                    }
+                },
+                "b": {
+                    "idents": {
+                        "bar": "↧",
+                        "curve": "⤵",
+                        "dashed": "⇣",
+                        "double": "⇓",
+                        "filled": "⬇",
+                        "quad": "⟱",
+                        "stop": "⤓",
+                        "stroked": "⇩",
+                        "triple": "⤋",
+                        "twohead": "↡"
+                    },
+                    "modules": {}
+                },
+                "tr": {
+                    "idents": {
+                        "double": "⇗",
+                        "filled": "⬈",
+                        "hook": "⤤",
+                        "stroked": "⬀",
+                        "bl": "⤢"
+                    },
+                    "modules": {}
+                },
+                "br": {
+                    "idents": {
+                        "double": "⇘",
+                        "filled": "⬊",
+                        "hook": "⤥",
+                        "stroked": "⬂"
+                    },
+                    "modules": {}
+                },
+                "tl": {
+                    "idents": {
+                        "double": "⇖",
+                        "filled": "⬉",
+                        "hook": "⤣",
+                        "stroked": "⬁",
+                        "br": "⤡"
+                    },
+                    "modules": {}
+                },
+                "bl": {
+                    "idents": {
+                        "double": "⇙",
+                        "filled": "⬋",
+                        "hook": "⤦",
+                        "stroked": "⬃"
+                    },
+                    "modules": {}
+                },
+                "ccw": {
+                    "idents": {
+                        "half": "↶"
+                    },
+                    "modules": {}
+                },
+                "cw": {
+                    "idents": {
+                        "half": "↷"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "arrowhead": {
+            "idents": {
+                "t": "⌃",
+                "b": "⌄"
+            },
+            "modules": {}
+        },
+        "arrows": {
+            "idents": {
+                "rr": "⇉",
+                "ll": "⇇",
+                "tt": "⇈",
+                "bb": "⇊",
+                "lr": "⇆",
+                "rl": "⇄",
+                "tb": "⇅",
+                "bt": "⇵",
+                "rrr": "⇶",
+                "lll": "⬱"
+            },
+            "modules": {
+                "lr": {
+                    "idents": {
+                        "stop": "↹"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "ast": {
+            "idents": {
+                "op": "∗",
+                "basic": "*",
+                "low": "⁎",
+                "double": "⁑",
+                "triple": "⁂",
+                "small": "﹡",
+                "circle": "⊛",
+                "sq": "⧆"
+            },
+            "modules": {}
+        },
+        "backslash": {
+            "idents": {
+                "circle": "⦸",
+                "not": "⧷"
+            },
+            "modules": {}
+        },
+        "ballot": {
+            "idents": {
+                "x": "☒"
+            },
+            "modules": {}
+        },
+        "bar": {
+            "idents": {
+                "v": "|",
+                "h": "―"
+            },
+            "modules": {
+                "v": {
+                    "idents": {
+                        "double": "‖",
+                        "triple": "⦀",
+                        "broken": "¦",
+                        "circle": "⦶"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "beta": {
+            "idents": {
+                "alt": "ϐ"
+            },
+            "modules": {}
+        },
+        "brace": {
+            "idents": {
+                "l": "{",
+                "r": "}",
+                "t": "⏞",
+                "b": "⏟"
+            },
+            "modules": {}
+        },
+        "bracket": {
+            "idents": {
+                "l": "[",
+                "r": "]",
+                "t": "⎴",
+                "b": "⎵"
+            },
+            "modules": {
+                "l": {
+                    "idents": {
+                        "double": "⟦"
+                    },
+                    "modules": {}
+                },
+                "r": {
+                    "idents": {
+                        "double": "⟧"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "checkmark": {
+            "idents": {
+                "light": "🗸"
+            },
+            "modules": {}
+        },
+        "circle": {
+            "idents": {
+                "stroked": "○",
+                "filled": "●",
+                "dotted": "◌",
+                "nested": "⊚"
+            },
+            "modules": {
+                "stroked": {
+                    "idents": {
+                        "tiny": "∘",
+                        "small": "⚬",
+                        "big": "◯"
+                    },
+                    "modules": {}
+                },
+                "filled": {
+                    "idents": {
+                        "tiny": "⦁",
+                        "small": "∙",
+                        "big": "⬤"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "colon": {
+            "idents": {
+                "eq": "≔"
+            },
+            "modules": {
+                "double": {
+                    "idents": {
+                        "eq": "⩴"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "copyright": {
+            "idents": {
+                "sound": "℗"
+            },
+            "modules": {}
+        },
+        "dagger": {
+            "idents": {
+                "double": "‡"
+            },
+            "modules": {}
+        },
+        "dash": {
+            "idents": {
+                "en": "–",
+                "em": "—",
+                "fig": "‒",
+                "wave": "〜",
+                "colon": "∹",
+                "circle": "⊝"
+            },
+            "modules": {
+                "wave": {
+                    "idents": {
+                        "double": "〰"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "degree": {
+            "idents": {
+                "c": "℃",
+                "f": "℉"
+            },
+            "modules": {}
+        },
+        "diamond": {
+            "idents": {
+                "stroked": "◇",
+                "filled": "◆"
+            },
+            "modules": {
+                "stroked": {
+                    "idents": {
+                        "small": "⋄",
+                        "medium": "⬦",
+                        "dot": "⟐"
+                    },
+                    "modules": {}
+                },
+                "filled": {
+                    "idents": {
+                        "medium": "⬥",
+                        "small": "⬩"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "div": {
+            "idents": {
+                "circle": "⨸"
+            },
+            "modules": {}
+        },
+        "divides": {
+            "idents": {
+                "not": "∤"
+            },
+            "modules": {}
+        },
+        "dot": {
+            "idents": {
+                "op": "⋅",
+                "basic": ".",
+                "c": "·",
+                "circle": "⊙",
+                "square": "⊡",
+                "double": "¨",
+                "triple": "⃛",
+                "quad": "⃜"
+            },
+            "modules": {
+                "circle": {
+                    "idents": {
+                        "big": "⨀"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "dotless": {
+            "idents": {
+                "i": "𝚤",
+                "j": "𝚥"
+            },
+            "modules": {}
+        },
+        "dots": {
+            "idents": {
+                "h": "…",
+                "v": "⋮",
+                "down": "⋱",
+                "up": "⋰"
+            },
+            "modules": {
+                "h": {
+                    "idents": {
+                        "c": "⋯"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "ellipse": {
+            "idents": {},
+            "modules": {
+                "stroked": {
+                    "idents": {
+                        "h": "⬭",
+                        "v": "⬯"
+                    },
+                    "modules": {}
+                },
+                "filled": {
+                    "idents": {
+                        "h": "⬬",
+                        "v": "⬮"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "epsilon": {
+            "idents": {
+                "alt": "ϵ"
+            },
+            "modules": {}
+        },
+        "eq": {
+            "idents": {
+                "star": "≛",
+                "circle": "⊜",
+                "colon": "≕",
+                "def": "≝",
+                "delta": "≜",
+                "equi": "≚",
+                "est": "≙",
+                "gt": "⋝",
+                "lt": "⋜",
+                "m": "≞",
+                "not": "≠",
+                "prec": "⋞",
+                "quest": "≟",
+                "small": "﹦",
+                "succ": "⋟"
+            },
+            "modules": {}
+        },
+        "excl": {
+            "idents": {
+                "double": "‼",
+                "inv": "¡",
+                "quest": "⁉"
+            },
+            "modules": {}
+        },
+        "exists": {
+            "idents": {
+                "not": "∄"
+            },
+            "modules": {}
+        },
+        "fence": {
+            "idents": {
+                "l": "⧘",
+                "r": "⧙",
+                "dotted": "⦙"
+            },
+            "modules": {
+                "l": {
+                    "idents": {
+                        "double": "⧚"
+                    },
+                    "modules": {}
+                },
+                "r": {
+                    "idents": {
+                        "double": "⧛"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "floral": {
+            "idents": {
+                "l": "☙",
+                "r": "❧"
+            },
+            "modules": {}
+        },
+        "gt": {
+            "idents": {
+                "circle": "⧁",
+                "dot": "⋗",
+                "double": "≫",
+                "eq": "≥",
+                "eqq": "≧",
+                "lt": "≷",
+                "neqq": "≩",
+                "not": "≯",
+                "ntilde": "⋧",
+                "small": "﹥",
+                "tilde": "≳",
+                "tri": "⊳",
+                "triple": "⋙"
+            },
+            "modules": {
+                "eq": {
+                    "idents": {
+                        "lt": "⋛",
+                        "not": "≱"
+                    },
+                    "modules": {}
+                },
+                "lt": {
+                    "idents": {
+                        "not": "≹"
+                    },
+                    "modules": {}
+                },
+                "tilde": {
+                    "idents": {
+                        "not": "≵"
+                    },
+                    "modules": {}
+                },
+                "tri": {
+                    "idents": {
+                        "eq": "⊵",
+                        "not": "⋫"
+                    },
+                    "modules": {
+                        "eq": {
+                            "idents": {
+                                "not": "⋭"
+                            },
+                            "modules": {}
+                        }
+                    }
+                },
+                "triple": {
+                    "idents": {
+                        "nested": "⫸"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "harpoon": {
+            "idents": {
+                "rt": "⇀",
+                "rb": "⇁",
+                "lt": "↼",
+                "lb": "↽",
+                "tl": "↿",
+                "tr": "↾",
+                "bl": "⇃",
+                "br": "⇂"
+            },
+            "modules": {
+                "rt": {
+                    "idents": {
+                        "bar": "⥛",
+                        "stop": "⥓"
+                    },
+                    "modules": {}
+                },
+                "rb": {
+                    "idents": {
+                        "bar": "⥟",
+                        "stop": "⥗"
+                    },
+                    "modules": {}
+                },
+                "lt": {
+                    "idents": {
+                        "bar": "⥚",
+                        "stop": "⥒",
+                        "rt": "⥎",
+                        "rb": "⥊"
+                    },
+                    "modules": {}
+                },
+                "lb": {
+                    "idents": {
+                        "bar": "⥞",
+                        "stop": "⥖",
+                        "rb": "⥐",
+                        "rt": "⥋"
+                    },
+                    "modules": {}
+                },
+                "tl": {
+                    "idents": {
+                        "bar": "⥠",
+                        "stop": "⥘",
+                        "bl": "⥑",
+                        "br": "⥍"
+                    },
+                    "modules": {}
+                },
+                "tr": {
+                    "idents": {
+                        "bar": "⥜",
+                        "stop": "⥔",
+                        "br": "⥏",
+                        "bl": "⥌"
+                    },
+                    "modules": {}
+                },
+                "bl": {
+                    "idents": {
+                        "bar": "⥡",
+                        "stop": "⥙"
+                    },
+                    "modules": {}
+                },
+                "br": {
+                    "idents": {
+                        "bar": "⥝",
+                        "stop": "⥕"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "harpoons": {
+            "idents": {
+                "rtrb": "⥤",
+                "blbr": "⥥",
+                "bltr": "⥯",
+                "lbrb": "⥧",
+                "ltlb": "⥢",
+                "ltrb": "⇋",
+                "ltrt": "⥦",
+                "rblb": "⥩",
+                "rtlb": "⇌",
+                "rtlt": "⥨",
+                "tlbr": "⥮",
+                "tltr": "⥣"
+            },
+            "modules": {}
+        },
+        "hexa": {
+            "idents": {
+                "stroked": "⬡",
+                "filled": "⬢"
+            },
+            "modules": {}
+        },
+        "hyph": {
+            "idents": {
+                "minus": "-",
+                "nobreak": "‑",
+                "point": "‧",
+                "soft": "­"
+            },
+            "modules": {}
+        },
+        "ident": {
+            "idents": {
+                "not": "≢",
+                "strict": "≣"
+            },
+            "modules": {}
+        },
+        "in": {
+            "idents": {
+                "not": "∉",
+                "rev": "∋",
+                "small": "∊"
+            },
+            "modules": {
+                "rev": {
+                    "idents": {
+                        "not": "∌",
+                        "small": "∍"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "integral": {
+            "idents": {
+                "ccw": "⨑",
+                "cont": "∮",
+                "cw": "∱",
+                "double": "∬",
+                "quad": "⨌",
+                "sect": "⨙",
+                "sq": "⨖",
+                "surf": "∯",
+                "times": "⨘",
+                "triple": "∭",
+                "union": "⨚",
+                "vol": "∰"
+            },
+            "modules": {
+                "arrow": {
+                    "idents": {
+                        "hook": "⨗"
+                    },
+                    "modules": {}
+                },
+                "cont": {
+                    "idents": {
+                        "ccw": "∳",
+                        "cw": "∲"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "join": {
+            "idents": {
+                "r": "⟖",
+                "l": "⟕"
+            },
+            "modules": {
+                "l": {
+                    "idents": {
+                        "r": "⟗"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "kappa": {
+            "idents": {
+                "alt": "ϰ"
+            },
+            "modules": {}
+        },
+        "lozenge": {
+            "idents": {
+                "stroked": "◊",
+                "filled": "⧫"
+            },
+            "modules": {
+                "stroked": {
+                    "idents": {
+                        "small": "⬫",
+                        "medium": "⬨"
+                    },
+                    "modules": {}
+                },
+                "filled": {
+                    "idents": {
+                        "small": "⬪",
+                        "medium": "⬧"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "lt": {
+            "idents": {
+                "circle": "⧀",
+                "dot": "⋖",
+                "double": "≪",
+                "eq": "≤",
+                "eqq": "≦",
+                "gt": "≶",
+                "neqq": "≨",
+                "not": "≮",
+                "ntilde": "⋦",
+                "small": "﹤",
+                "tilde": "≲",
+                "tri": "⊲",
+                "triple": "⋘"
+            },
+            "modules": {
+                "eq": {
+                    "idents": {
+                        "gt": "⋚",
+                        "not": "≰"
+                    },
+                    "modules": {}
+                },
+                "gt": {
+                    "idents": {
+                        "not": "≸"
+                    },
+                    "modules": {}
+                },
+                "tilde": {
+                    "idents": {
+                        "not": "≴"
+                    },
+                    "modules": {}
+                },
+                "tri": {
+                    "idents": {
+                        "eq": "⊴",
+                        "not": "⋪"
+                    },
+                    "modules": {
+                        "eq": {
+                            "idents": {
+                                "not": "⋬"
+                            },
+                            "modules": {}
+                        }
+                    }
+                },
+                "triple": {
+                    "idents": {
+                        "nested": "⫷"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "minus": {
+            "idents": {
+                "circle": "⊖",
+                "dot": "∸",
+                "plus": "∓",
+                "square": "⊟",
+                "tilde": "≂",
+                "triangle": "⨺"
+            },
+            "modules": {}
+        },
+        "notes": {
+            "idents": {
+                "up": "🎜",
+                "down": "🎝"
+            },
+            "modules": {}
+        },
+        "nothing": {
+            "idents": {
+                "rev": "⦰"
+            },
+            "modules": {}
+        },
+        "ohm": {
+            "idents": {
+                "inv": "℧"
+            },
+            "modules": {}
+        },
+        "or": {
+            "idents": {
+                "big": "⋁",
+                "curly": "⋎",
+                "dot": "⟇",
+                "double": "⩔"
+            },
+            "modules": {}
+        },
+        "parallel": {
+            "idents": {
+                "circle": "⦷",
+                "not": "∦"
+            },
+            "modules": {}
+        },
+        "paren": {
+            "idents": {
+                "l": "(",
+                "r": ")",
+                "t": "⏜",
+                "b": "⏝"
+            },
+            "modules": {}
+        },
+        "penta": {
+            "idents": {
+                "stroked": "⬠",
+                "filled": "⬟"
+            },
+            "modules": {}
+        },
+        "perp": {
+            "idents": {
+                "circle": "⦹"
+            },
+            "modules": {}
+        },
+        "phi": {
+            "idents": {
+                "alt": "ϕ"
+            },
+            "modules": {}
+        },
+        "pi": {
+            "idents": {
+                "alt": "ϖ"
+            },
+            "modules": {}
+        },
+        "pilcrow": {
+            "idents": {
+                "rev": "⁋"
+            },
+            "modules": {}
+        },
+        "planck": {
+            "idents": {
+                "reduce": "ℏ"
+            },
+            "modules": {}
+        },
+        "plus": {
+            "idents": {
+                "circle": "⊕",
+                "dot": "∔",
+                "minus": "±",
+                "small": "﹢",
+                "square": "⊞",
+                "triangle": "⨹"
+            },
+            "modules": {
+                "circle": {
+                    "idents": {
+                        "arrow": "⟴",
+                        "big": "⨁"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "prec": {
+            "idents": {
+                "approx": "⪷",
+                "double": "⪻",
+                "eq": "≼",
+                "eqq": "⪳",
+                "napprox": "⪹",
+                "neqq": "⪵",
+                "not": "⊀",
+                "ntilde": "⋨",
+                "tilde": "≾"
+            },
+            "modules": {
+                "eq": {
+                    "idents": {
+                        "not": "⋠"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "prime": {
+            "idents": {
+                "rev": "‵",
+                "double": "″",
+                "triple": "‴",
+                "quad": "⁗"
+            },
+            "modules": {
+                "double": {
+                    "idents": {
+                        "rev": "‶"
+                    },
+                    "modules": {}
+                },
+                "triple": {
+                    "idents": {
+                        "rev": "‷"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "product": {
+            "idents": {
+                "co": "∐"
+            },
+            "modules": {}
+        },
+        "quest": {
+            "idents": {
+                "double": "⁇",
+                "excl": "⁈",
+                "inv": "¿"
+            },
+            "modules": {}
+        },
+        "quote": {
+            "idents": {
+                "double": "&quot;",
+                "single": "&#x27;"
+            },
+            "modules": {
+                "l": {
+                    "idents": {
+                        "double": "“",
+                        "single": "‘"
+                    },
+                    "modules": {}
+                },
+                "r": {
+                    "idents": {
+                        "double": "”",
+                        "single": "’"
+                    },
+                    "modules": {}
+                },
+                "angle": {
+                    "idents": {},
+                    "modules": {
+                        "l": {
+                            "idents": {
+                                "double": "«",
+                                "single": "‹"
+                            },
+                            "modules": {}
+                        },
+                        "r": {
+                            "idents": {
+                                "double": "»",
+                                "single": "›"
+                            },
+                            "modules": {}
+                        }
+                    }
+                },
+                "high": {
+                    "idents": {
+                        "double": "‟",
+                        "single": "‛"
+                    },
+                    "modules": {}
+                },
+                "low": {
+                    "idents": {
+                        "double": "„",
+                        "single": "‚"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "rect": {
+            "idents": {},
+            "modules": {
+                "stroked": {
+                    "idents": {
+                        "h": "▭",
+                        "v": "▯"
+                    },
+                    "modules": {}
+                },
+                "filled": {
+                    "idents": {
+                        "h": "▬",
+                        "v": "▮"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "rho": {
+            "idents": {
+                "alt": "ϱ"
+            },
+            "modules": {}
+        },
+        "sect": {
+            "idents": {
+                "and": "⩄",
+                "big": "⋂",
+                "dot": "⩀",
+                "double": "⋒",
+                "sq": "⊓"
+            },
+            "modules": {
+                "sq": {
+                    "idents": {
+                        "big": "⨅",
+                        "double": "⩎"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "semi": {
+            "idents": {
+                "rev": "⁏"
+            },
+            "modules": {}
+        },
+        "slash": {
+            "idents": {
+                "double": "⫽",
+                "triple": "⫻"
+            },
+            "modules": {}
+        },
+        "space": {
+            "idents": {
+                "nobreak": "",
+                "en": "",
+                "quad": "",
+                "third": "",
+                "quarter": "",
+                "sixth": "",
+                "med": "",
+                "fig": "",
+                "punct": "",
+                "thin": "",
+                "hair": ""
+            },
+            "modules": {}
+        },
+        "square": {
+            "idents": {
+                "stroked": "□",
+                "filled": "■"
+            },
+            "modules": {
+                "stroked": {
+                    "idents": {
+                        "tiny": "▫",
+                        "small": "◽",
+                        "medium": "◻",
+                        "big": "⬜",
+                        "dotted": "⬚",
+                        "rounded": "▢"
+                    },
+                    "modules": {}
+                },
+                "filled": {
+                    "idents": {
+                        "tiny": "▪",
+                        "small": "◾",
+                        "medium": "◼",
+                        "big": "⬛"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "star": {
+            "idents": {
+                "op": "⋆",
+                "stroked": "★",
+                "filled": "★"
+            },
+            "modules": {}
+        },
+        "subset": {
+            "idents": {
+                "dot": "⪽",
+                "double": "⋐",
+                "eq": "⊆",
+                "neq": "⊊",
+                "not": "⊄",
+                "sq": "⊏"
+            },
+            "modules": {
+                "eq": {
+                    "idents": {
+                        "not": "\\nsubseteq",
+                        "sq": "⊑"
+                    },
+                    "modules": {
+                        "sq": {
+                            "idents": {
+                                "not": "⋢"
+                            },
+                            "modules": {}
+                        }
+                    }
+                },
+                "sq": {
+                    "idents": {
+                        "neq": "⋤"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "succ": {
+            "idents": {
+                "approx": "⪸",
+                "double": "⪼",
+                "eq": "≽",
+                "eqq": "⪴",
+                "napprox": "⪺",
+                "neqq": "⪶",
+                "not": "⊁",
+                "ntilde": "⋩",
+                "tilde": "≿"
+            },
+            "modules": {
+                "eq": {
+                    "idents": {
+                        "not": "⋡"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "suit": {
+            "idents": {
+                "club": "♣",
+                "diamond": "♦",
+                "heart": "♥",
+                "spade": "♠"
+            },
+            "modules": {}
+        },
+        "sum": {
+            "idents": {
+                "integral": "⨋"
+            },
+            "modules": {}
+        },
+        "supset": {
+            "idents": {
+                "dot": "⪾",
+                "double": "⋑",
+                "eq": "⊇",
+                "neq": "⊋",
+                "not": "⊅",
+                "sq": "⊐"
+            },
+            "modules": {
+                "eq": {
+                    "idents": {
+                        "not": "⊉",
+                        "sq": "⊒"
+                    },
+                    "modules": {
+                        "sq": {
+                            "idents": {
+                                "not": "⋣"
+                            },
+                            "modules": {}
+                        }
+                    }
+                },
+                "sq": {
+                    "idents": {
+                        "neq": "⋥"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "tack": {
+            "idents": {
+                "r": "⊢",
+                "l": "⊣",
+                "t": "⊥",
+                "b": "⊤"
+            },
+            "modules": {
+                "r": {
+                    "idents": {
+                        "long": "⟝",
+                        "double": "⊨"
+                    },
+                    "modules": {}
+                },
+                "l": {
+                    "idents": {
+                        "long": "⟞",
+                        "short": "⫞",
+                        "double": "⫤",
+                        "r": "⟛"
+                    },
+                    "modules": {}
+                },
+                "t": {
+                    "idents": {
+                        "big": "⟘",
+                        "double": "⫫",
+                        "short": "⫠"
+                    },
+                    "modules": {}
+                },
+                "b": {
+                    "idents": {
+                        "big": "⟙",
+                        "double": "⫪",
+                        "short": "⫟"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "theta": {
+            "idents": {
+                "alt": "ϑ"
+            },
+            "modules": {}
+        },
+        "tilde": {
+            "idents": {
+                "op": "∼",
+                "basic": "~",
+                "eq": "≃",
+                "eqq": "≅",
+                "neqq": "≆",
+                "not": "≁",
+                "rev": "∽",
+                "triple": "≋"
+            },
+            "modules": {
+                "eq": {
+                    "idents": {
+                        "not": "≄",
+                        "rev": "⋍"
+                    },
+                    "modules": {}
+                },
+                "eqq": {
+                    "idents": {
+                        "not": "≇"
+                    },
+                    "modules": {}
+                },
+                "rev": {
+                    "idents": {
+                        "eqq": "≌"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "times": {
+            "idents": {
+                "big": "⨉",
+                "circle": "⊗",
+                "div": "⋇",
+                "l": "⋉",
+                "r": "⋊",
+                "square": "⊠",
+                "triangle": "⨻"
+            },
+            "modules": {
+                "circle": {
+                    "idents": {
+                        "big": "⨂"
+                    },
+                    "modules": {}
+                },
+                "three": {
+                    "idents": {
+                        "l": "⋋",
+                        "r": "⋌"
+                    },
+                    "modules": {}
+                }
+            }
+        },
+        "triangle": {
+            "idents": {},
+            "modules": {
+                "stroked": {
+                    "idents": {
+                        "r": "▷",
+                        "l": "◁",
+                        "t": "△",
+                        "b": "▽",
+                        "bl": "◺",
+                        "br": "◿",
+                        "tl": "◸",
+                        "tr": "◹",
+                        "rounded": "🛆",
+                        "nested": "⟁",
+                        "dot": "◬"
+                    },
+                    "modules": {
+                        "small": {
+                            "idents": {
+                                "r": "▹",
+                                "b": "▿",
+                                "l": "◃",
+                                "t": "▵"
+                            },
+                            "modules": {}
+                        }
+                    }
+                },
+                "filled": {
+                    "idents": {
+                        "r": "▶",
+                        "l": "◀",
+                        "t": "▲",
+                        "b": "▼",
+                        "bl": "◣",
+                        "br": "◢",
+                        "tl": "◤",
+                        "tr": "◥"
+                    },
+                    "modules": {
+                        "small": {
+                            "idents": {
+                                "r": "▸",
+                                "b": "▾",
+                                "l": "◂",
+                                "t": "▴"
+                            },
+                            "modules": {}
+                        }
+                    }
+                }
+            }
+        },
+        "turtle": {
+            "idents": {
+                "l": "〔",
+                "r": "〕",
+                "t": "⏠",
+                "b": "⏡"
+            },
+            "modules": {}
+        },
+        "union": {
+            "idents": {
+                "arrow": "⊌",
+                "big": "⋃",
+                "dot": "⊍",
+                "double": "⋓",
+                "minus": "⩁",
+                "or": "⩅",
+                "plus": "⊎",
+                "sq": "⊔"
+            },
+            "modules": {
+                "dot": {
+                    "idents": {
+                        "big": "⨃"
+                    },
+                    "modules": {}
+                },
+                "plus": {
+                    "idents": {
+                        "big": "⨄"
+                    },
+                    "modules": {}
+                },
+                "sq": {
+                    "idents": {
+                        "big": "⨆",
+                        "double": "⩏"
+                    },
+                    "modules": {}
+                }
+            }
+        }
+    }
+}

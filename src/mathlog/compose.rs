@@ -1,409 +1,249 @@
 use super::ast::*;
-use crate::utils::{add_indent, Intercalate};
+use crate::utils::roman;
 
-//
-
-const TAB_SPACE_NUM: usize = 4;
-
-//
-
-//
-
-impl Syntax {
-    pub fn compose(&self) -> String {
-        self.paragraphs.compose()
-    }
+struct Composer {
+    indent: usize,
+    lines: Vec<String>,
+    current_line: String,
 }
 
-impl Paragraphs {
-    fn compose(&self) -> String {
-        self.0.iter().map(|p| p.compose()).intercalate("\n\n")
-    }
-}
-
-impl Paragraph {
-    fn compose(&self) -> String {
-        self.lines.iter().map(|l| l.compose()).intercalate("\n")
-    }
-}
-
-impl Line {
-    fn compose(&self) -> String {
-        match self {
-            Line::Heading(h) => h.compose(),
-            Line::Text(t) => t.compose(),
-            Line::Env(e) => e.compose(),
-            Line::Enum(e) => e.compose(),
-            Line::Quote(q) => q.compose(),
-            Line::Code(c) => c.compose(),
+impl Composer {
+    fn new() -> Self {
+        Self {
+            indent: 0,
+            lines: Vec::new(),
+            current_line: String::new(),
         }
     }
-}
 
-impl Heading {
-    fn compose(&self) -> String {
-        format!(
-            "{} {}",
-            "#".repeat(self.level),
-            self.segments.0.iter().map(|s| s.compose()).intercalate(" ")
-        )
+    fn export(self) -> String {
+        self.lines.join("\n") + "\n" + &self.current_line
     }
-}
 
-impl Text {
-    fn compose(&self) -> String {
-        self.segments.0.iter().map(|s| s.compose()).intercalate("")
+    fn indent(&mut self) {
+        self.indent += 1;
     }
-}
 
-impl Segment {
-    fn compose(&self) -> String {
-        match self {
-            Segment::Plain(s) => s.clone(),
-            Segment::MathInline(m) => format!("${}$", m.compose()),
-            Segment::MathDisplay(m) => format!("$$\n{}\n$$", m.compose()),
-            Segment::HTMLTag(t) => t.compose(),
-            Segment::Emph(e) => e.compose(),
-            Segment::Link(l) => l.compose(),
-            Segment::Table(t) => t.compose(),
-            Segment::Image(i) => i.compose(),
+    fn dedent(&mut self) {
+        self.indent -= 1;
+    }
+
+    fn newline(&mut self) {
+        self.lines.push(std::mem::take(&mut self.current_line));
+        self.current_line = String::new();
+        self.current_line.push_str(&"    ".repeat(self.indent));
+    }
+
+    fn newline_if_not_empty(&mut self) {
+        if !self.current_line.trim().is_empty() {
+            self.newline();
         }
     }
-}
 
-impl Math {
-    fn compose(&self) -> String {
-        self.segments.0.iter().map(|s| s.compose()).intercalate(" ")
+    fn add(&mut self, s: &str) {
+        self.current_line += s;
     }
-}
 
-impl MathSegment {
-    fn compose(&self) -> String {
-        match self {
-            MathSegment::Single(s) => s.clone(),
-            MathSegment::Braced { segments } => format!(
-                "{{{}}}",
-                segments.0.iter().map(|s| s.compose()).intercalate(" ")
-            ),
-            MathSegment::Delimited {
-                left,
-                segments,
-                right,
-            } => format!(
-                "\\left{} {} \\right{}",
-                left,
-                segments.0.iter().map(|s| s.compose()).intercalate(" "),
-                right
-            ),
-            MathSegment::Function { name, arguments } => format!(
-                "\\{}{}",
-                name,
-                arguments.iter().map(|a| a.compose()).intercalate("")
-            ),
+    fn space(&mut self) {
+        self.add(" ");
+    }
+
+    //
+
+    fn paragraph(&mut self, paragraph: &Paragraph) {
+        self.segments(&paragraph.segments);
+    }
+
+    fn segments(&mut self, segments: &Segments) {
+        for (i, segment) in segments.0.iter().enumerate() {
+            if i != 0 {
+                // self.space();
+            }
+            self.segment(segment);
         }
     }
-}
 
-impl MathArg {
-    fn compose(&self) -> String {
-        match self {
-            MathArg::Optional(m) => format!("[{}]", m.compose()),
-            MathArg::Required(m) => format!("{{{}}}", m.compose()),
+    fn segment(&mut self, segment: &Segment) {
+        match segment {
+            Segment::Linebreak => {
+                self.add("\\\\");
+                self.newline();
+            }
+            Segment::Heading(heading) => self.heading(heading),
+            Segment::Text(text) => self.text(text),
+            Segment::CodeInline(code) => self.code_inline(code),
+            Segment::Strong(strong) => self.strong(strong),
+            Segment::Emph(emph) => self.emph(emph),
+            Segment::MathInline(math_inline) => self.math_inline(math_inline),
+            Segment::MathDisplay(math_display) => self.math_display(math_display),
+            Segment::ListItem(list) => self.list_item(list),
+            Segment::MathDelimited(math_delimited) => self.math_delimited(math_delimited),
+            Segment::MathAttach(math_attach) => self.math_attach(math_attach),
+            Segment::MathAlignPoint => self.math_align_point(),
+            Segment::Command(command) => self.command(command),
+            Segment::RawCommand(command) => self.raw_command(command),
+            Segment::Env(env) => self.env(env),
+            Segment::ExportComment(comment) => self.export_comment(comment),
         }
     }
-}
 
-impl HTMLTag {
-    fn compose(&self) -> String {
-        format!(
-            "<{}{}>{}</{}>",
-            self.name,
-            self.attributes
-                .iter()
-                .map(|(k, v)| format!(" {}=\"{}\"", k, v))
-                .intercalate(""),
-            self.children.compose(),
-            self.name
-        )
+    fn heading(&mut self, heading: &Heading) {
+        self.newline_if_not_empty();
+        self.add(&format!("{} ", "#".repeat(heading.level)));
+        self.segments(&heading.content);
     }
-}
 
-impl Emph {
-    fn compose(&self) -> String {
-        let tag = match self.kind {
-            EmphKind::Bold => "b",
-            EmphKind::Italic => "i",
-            EmphKind::Strike => "s",
+    fn text(&mut self, text: &Text) {
+        self.add(&text.0);
+    }
+
+    fn code_inline(&mut self, code: &CodeInline) {
+        self.add(&code.0);
+    }
+
+    fn strong(&mut self, strong: &Strong) {
+        self.add("**");
+        self.segments(&strong.content);
+        self.add("**");
+    }
+
+    fn emph(&mut self, emph: &Emph) {
+        self.add("*");
+        self.segments(&emph.content);
+        self.add("*");
+    }
+
+    fn math_inline(&mut self, math_inline: &MathInline) {
+        self.add("$");
+        self.segments(&math_inline.content);
+        self.add("$");
+    }
+
+    fn math_display(&mut self, math_display: &MathDisplay) {
+        self.newline_if_not_empty();
+        self.add("\\begin{align*}");
+        self.newline();
+        self.segments(&math_display.content);
+        self.newline();
+        self.add("\\end{align*}");
+    }
+
+    fn list_item(&mut self, list: &ListItem) {
+        let symbol = match list.symbol {
+            ListSymbol::NoNum => "-".to_string(),
+            ListSymbol::NumDot(i) => format!("{}.", i),
+            ListSymbol::NumParen(i) => format!("({})", i),
+            ListSymbol::NumBrak(i) => format!("[{}]", i),
+            ListSymbol::RomanDot(i) => format!("{}. ", roman(i)),
+            ListSymbol::RomanParen(i) => format!("({}) ", roman(i)),
+            ListSymbol::RomanBrak(i) => format!("[{}] ", roman(i)),
         };
-        format!("<{}>{}</{}>", tag, self.child.compose(), tag)
+        self.newline_if_not_empty();
+        self.add(&symbol);
+        self.space();
+        self.indent();
+        for (i, paragraph) in list.contents.iter().enumerate() {
+            if i != 0 {
+                self.newline();
+            }
+            self.paragraph(paragraph);
+        }
+        self.dedent();
     }
-}
 
-impl Link {
-    fn compose(&self) -> String {
-        format!("[{}]({})", self.text, self.url)
+    fn math_delimited(&mut self, math_delimited: &MathDelimited) {
+        // TODO
+        let open = &math_delimited.open;
+        let body = &math_delimited.body;
+        let close = &math_delimited.close;
+        self.add("\\left");
+        self.segments(open);
+        self.segments(body);
+        self.add("\\right");
+        self.segments(close);
     }
-}
 
-impl Table {
-    fn compose(&self) -> String {
-        format!(
-            "{}\n{}",
-            self.header.compose(),
-            self.rows.iter().map(|r| r.compose()).intercalate("\n")
-        )
-    }
-}
-
-impl TableRow {
-    fn compose(&self) -> String {
-        format!(
-            "|{}|",
-            self.cells
-                .iter()
-                .map(|segments| segments.0.iter().map(|s| s.compose()).intercalate(" "))
-                .intercalate("|")
-        )
-    }
-}
-
-impl Image {
-    fn compose(&self) -> String {
-        format!("![]({})", self.url)
-    }
-}
-
-impl Env {
-    fn compose(&self) -> String {
-        let env_name = self.kind.name();
-        let env_title = self
-            .title
-            .as_ref()
-            .map(|ss| ss.0.iter().map(|s| s.compose()).intercalate(" "))
-            .unwrap_or_else(String::new);
-        let env_body = self.children.compose();
-        format!("&&&{} {}\n{}\n&&&", env_name, env_title, env_body)
-    }
-}
-
-impl EnvKind {
-    fn name(&self) -> &str {
-        match self {
-            EnvKind::Block => "",
-            EnvKind::Conj => "conj",
-            EnvKind::Axm => "axm",
-            EnvKind::Def => "def",
-            EnvKind::Prop => "prop",
-            EnvKind::Fml => "fml",
-            EnvKind::Lem => "lem",
-            EnvKind::Thm => "thm",
-            EnvKind::Cor => "cor",
-            EnvKind::Prf => "prf",
-            EnvKind::Ex => "ex",
-            EnvKind::Exc => "exc",
-            EnvKind::Rem => "rem",
+    fn math_attach(&mut self, math_attach: &MathAttach) {
+        let base = &math_attach.base;
+        let bottom = &math_attach.bottom;
+        let top = &math_attach.top;
+        self.segments(base);
+        if let Some(bottom) = bottom {
+            self.add("_");
+            self.add("{");
+            self.segments(bottom);
+            self.add("}");
+        }
+        if let Some(top) = top {
+            self.add("^");
+            self.add("{");
+            self.segments(top);
+            self.add("}");
         }
     }
-}
 
-impl Enum {
-    fn compose(&self) -> String {
-        // indent all inner lines
-        self.children
-            .iter()
-            .enumerate()
-            .map(|(i, ps)| {
-                let numbering = self.kind.numbering(i);
-                let numbering_len = numbering.chars().count();
-                let space_num = TAB_SPACE_NUM * (numbering_len / TAB_SPACE_NUM + 1);
-                let init_spacing = space_num - numbering_len;
-                let rest_spacing = space_num;
-                // spacing TAB_SPACE_NUM - numbering_len for the first line
-                // and TAB_SPACE_NUM for the rest
-                numbering + &add_indent(&ps.compose(), init_spacing, rest_spacing)
-            })
-            .intercalate("\n")
+    fn math_align_point(&mut self) {
+        self.add("&");
     }
-}
 
-impl EnumKind {
-    fn numbering(&self, i: usize) -> String {
-        match self {
-            EnumKind::NoNum => "-".to_string(),
-            EnumKind::Num { num_kind, style } => {
-                let num = match num_kind {
-                    NumKind::Arabic => format!("{}", i + 1),
-                    NumKind::Roman => format!("R{}", i + 1),
-                };
-                match style {
-                    EnumNumStyle::Period => format!("{}.", num),
-                    EnumNumStyle::Paren => format!("({})", num),
-                    EnumNumStyle::Square => format!("[{}]", num),
-                }
+    fn command(&mut self, command: &Command) {
+        self.add("\\");
+        self.add(&command.name);
+        for arg in &command.args {
+            if arg.is_optional {
+                self.add("[");
+            } else {
+                self.add("{");
+            }
+            self.segments(&arg.content);
+            if arg.is_optional {
+                self.add("]");
+            } else {
+                self.add("}");
             }
         }
     }
-}
 
-impl Quote {
-    fn compose(&self) -> String {
-        self.children
-            .compose()
-            .lines()
-            .map(|l| format!("> {}", l))
-            .intercalate("\n")
+    fn raw_command(&mut self, command: &RawCommand) {
+        self.add(&command.0);
+    }
+
+    fn env(&mut self, env: &Env) {
+        self.newline_if_not_empty();
+        self.add("&&&");
+        self.add(&env.kind.name());
+        if let Some(title) = &env.title {
+            self.space();
+            self.segments(title);
+        }
+        self.newline();
+        for (i, paragraph) in env.contents.iter().enumerate() {
+            if i != 0 {
+                self.newline();
+            }
+            self.paragraph(paragraph);
+        }
+        self.newline();
+        self.add("&&&");
+    }
+
+    fn export_comment(&mut self, comment: &String) {
+        self.newline_if_not_empty();
+        self.add(&format!("<!-- {} -->", comment));
     }
 }
 
-impl CodeBlock {
-    fn compose(&self) -> String {
-        let lang = self.lang.as_deref().unwrap_or("");
-        format!(
-            "```{}\n{}\n```",
-            lang,
-            add_indent(&self.code, TAB_SPACE_NUM, TAB_SPACE_NUM)
-        )
+impl Syntax {
+    pub fn compose(&self) -> String {
+        let mut composer = Composer::new();
+        for (i, paragraph) in self.paragraphs.iter().enumerate() {
+            if i != 0 {
+                composer.newline();
+                composer.newline();
+            }
+            composer.paragraph(paragraph);
+        }
+        composer.newline();
+        composer.export()
     }
-}
-
-// tests
-
-// TODO: make tests for all variants
-
-#[test]
-fn _compose_sample00() {
-    let input = Syntax {
-        paragraphs: Paragraphs(vec![
-            Paragraph {
-                lines: vec![Line::Heading(Heading {
-                    level: 1,
-                    segments: Segments(vec![Segment::Plain("Greeting".to_string())]),
-                })],
-            },
-            Paragraph {
-                lines: vec![Line::Heading(Heading {
-                    level: 2,
-                    segments: Segments(vec![Segment::Plain("Hello".to_string())]),
-                })],
-            },
-            Paragraph {
-                lines: vec![Line::Text(Text {
-                    segments: Segments(vec![
-                        Segment::Plain("Hello! ".to_string()),
-                        Segment::MathInline(Math {
-                            segments: MathSegments(vec![
-                                MathSegment::Single("a".to_string()),
-                                MathSegment::Single("+".to_string()),
-                                MathSegment::Delimited {
-                                    left: "(".to_string(),
-                                    segments: MathSegments(vec![
-                                        MathSegment::Single("b".to_string()),
-                                        MathSegment::Single("\\times".to_string()),
-                                        MathSegment::Function {
-                                            name: "frac".to_string(),
-                                            arguments: vec![
-                                                MathArg::Required(Math {
-                                                    segments: MathSegments(vec![
-                                                        MathSegment::Single("c".to_string()),
-                                                    ]),
-                                                }),
-                                                MathArg::Required(Math {
-                                                    segments: MathSegments(vec![
-                                                        MathSegment::Single("d".to_string()),
-                                                    ]),
-                                                }),
-                                            ],
-                                        },
-                                    ]),
-                                    right: ")".to_string(),
-                                },
-                            ]),
-                        }),
-                    ]),
-                })],
-            },
-            Paragraph {
-                lines: vec![Line::Text(Text {
-                    segments: Segments(vec![Segment::Plain(
-                        "Here is a table of contents:".to_string(),
-                    )]),
-                })],
-            },
-            Paragraph {
-                lines: vec![Line::Enum(Enum {
-                    kind: EnumKind::NoNum,
-                    children: vec![
-                        Paragraph {
-                            lines: vec![
-                                Line::Text(Text {
-                                    segments: Segments(vec![Segment::Plain(
-                                        "Greeting".to_string(),
-                                    )]),
-                                }),
-                                Line::Enum(Enum {
-                                    kind: EnumKind::Num {
-                                        num_kind: NumKind::Arabic,
-                                        style: EnumNumStyle::Period,
-                                    },
-                                    children: vec![Paragraph {
-                                        lines: vec![Line::Text(Text {
-                                            segments: Segments(vec![Segment::Plain(
-                                                "Hello".to_string(),
-                                            )]),
-                                        })],
-                                    }],
-                                }),
-                            ],
-                        },
-                        Paragraph {
-                            lines: vec![
-                                Line::Text(Text {
-                                    segments: Segments(vec![Segment::Plain("Bye".to_string())]),
-                                }),
-                                Line::Enum(Enum {
-                                    kind: EnumKind::Num {
-                                        num_kind: NumKind::Roman,
-                                        style: EnumNumStyle::Paren,
-                                    },
-                                    children: vec![
-                                        Paragraph {
-                                            lines: vec![Line::Text(Text {
-                                                segments: Segments(vec![Segment::Plain(
-                                                    "Goodbye".to_string(),
-                                                )]),
-                                            })],
-                                        },
-                                        Paragraph {
-                                            lines: vec![Line::Text(Text {
-                                                segments: Segments(vec![Segment::Plain(
-                                                    "See you".to_string(),
-                                                )]),
-                                            })],
-                                        },
-                                    ],
-                                }),
-                            ],
-                        },
-                    ],
-                })],
-            },
-        ]),
-    };
-    let output = r#"
-# Greeting
-
-## Hello
-
-Hello! $a + \left(b \times \frac{c}{d}\right)$
-
-Here is a table of contents:
-
--   Greeting
-    1.  Hello
--   Bye
-    (R1)    Goodbye
-    (R2)    See you
-"#
-    .trim();
-    assert_eq!(input.compose(), output);
 }

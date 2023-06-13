@@ -1,5 +1,6 @@
 {
   "idents": {
+    "quad": "\\quad",
     "AA": "\\bb{A}",
     "Alpha": "A",
     "BB": "\\bb{B}",
@@ -61,6 +62,7 @@
     "beta": "\\beta",
     "gamma": "\\gamma",
     "delta": "\\delta",
+    "dot": "\\cdot",
     "epsilon": "\\epsilon",
     "zeta": "\\zeta",
     "eta": "\\eta",

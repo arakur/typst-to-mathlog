@@ -1,8 +1,6 @@
-pub mod mathlog_v2;
-pub mod typst_;
+pub mod mathlog;
 pub mod utils;
 
-use mathlog_v2 as mathlog;
 use typst::syntax::ast::AstNode;
 
 //
@@ -10,34 +8,23 @@ use typst::syntax::ast::AstNode;
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     use typst::syntax;
 
-    let dic = mathlog::Dictionary::read("./dictionary.json")?;
+    let dic = mathlog::Dictionary::read("./dictionary/dictionary.json")?;
 
-    let input = r#"
-= Greeting; say hello $x + y$ ! $(e)^(i pi) + 1 = 0$ ! $a_i^n$
-==
-===
-Hello, *World* !
-This is an example of a _mathematical equation_: $e^(i pi.alt) + 1 = 0$
-$
-    e^(i π) + 1 = 0
-$
+    let input_path = std::env::args().nth(1).expect("No input path");
+    // let input_path = "./example/example.typ";
+    let input = std::fs::read_to_string(input_path)?;
 
-WTF!
-    "#
-    .trim();
-    //     let input = r#"
-    // = Greeting; say hello $(e)^(i pi) + 1 = 0$ ! $a_i^n$
-    // ==
-    // ===
-    // Hello, *World* !
-    //     "#
-    // .trim();
-    let typst_stx = syntax::ast::Markup::from_untyped(&syntax::parse(input)).unwrap();
-    println!("Typst:\n\n{:#?}\n", typst_stx);
+    let output_path = std::env::args().nth(2).expect("No output path");
+    // let output_path = "./example/example.md";
+
+    let typst_stx = syntax::ast::Markup::from_untyped(&syntax::parse(&input))
+        .ok_or("parse error in Typst code")?;
 
     let mathlog_stx = mathlog::ast::Syntax::from_typst(&typst_stx, &dic)?;
-    println!("Mathlog:\n\n{:#?}\n", mathlog_stx);
+
     let output = mathlog_stx.compose();
-    println!("output:\n\n{}\n", output);
+
+    std::fs::write(output_path, output)?;
+
     Ok(())
 }

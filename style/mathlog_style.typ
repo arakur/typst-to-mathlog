@@ -5,6 +5,10 @@
 #let exc_color = black
 #let rem_color = rgb("ffebee")
 #let prf_color = black
+#let fml_color = rgb("1e90ff")
+#let bl_color = rgb("262626")
+#let conj_color = rgb("343a40")
+
 
 // 
 
@@ -22,9 +26,7 @@
 )[
     #counter.step()
     #text(fill: color, weight: "bold")[#name #counter.display()]
-    #if title != none [
-        text[ #title ]
-    ]
+    #if title != none [#text[#title]]
     
     #body
 ]
@@ -43,6 +45,9 @@
 #let exc_counter = counter("exc")
 #let exc(title: none, body) = env(exc_counter, exc_color, title, "問題", body)
 
+#let fml_counter = counter("fml")
+#let fml(title: none, body) = env(fml_counter, fml_color, title, "公式", body)
+
 #let rem(title: none, body) = block(
     fill: rem_color,
     radius: 2pt,
@@ -51,9 +56,38 @@
     breakable: true
 )[
     #text(fill: strong_color, weight: "bold")[注意]
-    #if title != none [
-        text[ #title ]
-    ]
+    #if title != none [#text[ #title ]]
+    
+    #body
+]
+
+#let conj(title: none, body) = block(
+    stroke: (
+        paint: conj_color,
+        thickness: 1pt,
+    ),
+    radius: 2pt,
+    inset: 4pt,
+    width: 100%,
+    breakable: true
+)[
+    #text(fill: conj_color, weight: "bold")[予想]
+    #if title != none [#text[ #title ]]
+    
+    #body
+]
+
+#let bl(title: none, body) = block(
+    stroke: (
+        paint: bl_color,
+        thickness: 1pt,
+    ),
+    radius: 2pt,
+    inset: 4pt,
+    width: 100%,
+    breakable: true
+)[
+    #if title != none [#text[ #title ]]
     
     #body
 ]
@@ -70,9 +104,7 @@
     breakable: true
 )[
     #text(fill: prf_color, weight: "bold")[証明]
-    #if title != none [
-        text[ #title ]
-    ]
+    #if title != none [#text[ #title ]]
 
     #body
 ]

@@ -1,166 +1,122 @@
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone)]
 pub struct Syntax {
     pub paragraphs: Paragraphs,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Paragraphs(pub Vec<Paragraph>);
+pub type Paragraphs = Vec<Paragraph>;
 
-impl Paragraphs {
+#[derive(Debug, Clone)]
+pub struct Paragraph {
+    pub segments: Segments,
+}
+
+#[derive(Debug, Clone, Default)]
+pub struct Segments(pub Vec<Segment>);
+
+impl Segments {
     pub fn new() -> Self {
         Self(Vec::new())
     }
 
-    pub fn push(&mut self, paragraph: Paragraph) {
-        self.0.push(paragraph)
+    pub fn push(&mut self, segment: Segment) {
+        self.0.push(segment);
+    }
+
+    pub fn is_empty(&self) -> bool {
+        self.0.is_empty()
     }
 }
 
-impl Default for Paragraphs {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Paragraph {
-    pub lines: Vec<Line>,
-}
-
-impl Paragraph {
-    pub fn new() -> Self {
-        Self { lines: Vec::new() }
-    }
-}
-
-impl Default for Paragraph {
-    fn default() -> Self {
-        Self::new()
-    }
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum Line {
+#[derive(Debug, Clone)]
+pub enum Segment {
+    // Space,
+    Linebreak,
     Heading(Heading),
     Text(Text),
+    CodeInline(CodeInline),
+    Strong(Strong),
+    Emph(Emph),
+    MathInline(MathInline),
+    MathDisplay(MathDisplay),
+    ListItem(ListItem),
+    MathDelimited(MathDelimited),
+    MathAttach(MathAttach),
+    MathAlignPoint,
+    Command(Command),
+    RawCommand(RawCommand),
     Env(Env),
-    Enum(Enum),
-    Quote(Quote),
-    Code(CodeBlock),
+    ExportComment(String),
+    // TODO
 }
 
-//
-
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone)]
 pub struct Heading {
     pub level: usize,
-    pub segments: Segments,
+    pub content: Segments,
 }
 
-//
+#[derive(Debug, Clone)]
+pub struct Text(pub String);
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Text {
-    pub segments: Segments,
+#[derive(Debug, Clone)]
+pub struct CodeInline(pub String);
+
+#[derive(Debug, Clone)]
+pub struct Strong {
+    pub content: Segments,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum Segment {
-    Plain(String),
-    MathInline(Math),
-    MathDisplay(Math),
-    HTMLTag(HTMLTag),
-    Emph(Emph),
-    Link(Link),
-    Table(Table),
-    Image(Image),
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Segments(pub Vec<Segment>);
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Math {
-    pub segments: MathSegments,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct MathSegments(pub Vec<MathSegment>);
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum MathSegment {
-    Single(String),
-    Braced {
-        segments: MathSegments,
-    },
-    Delimited {
-        left: String,
-        segments: MathSegments,
-        right: String,
-    },
-    Function {
-        name: String,
-        arguments: Vec<MathArg>,
-    },
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum MathArg {
-    Optional(Math),
-    Required(Math),
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct HTMLTag {
-    pub name: String,
-    pub attributes: Vec<(String, String)>,
-    pub children: Paragraphs,
-}
-
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone)]
 pub struct Emph {
-    pub kind: EmphKind,
-    pub child: Paragraph,
+    pub content: Segments,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum EmphKind {
-    Bold,
-    Italic,
-    Strike,
+#[derive(Debug, Clone)]
+pub struct MathInline {
+    pub content: Segments,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Link {
-    pub text: String,
-    pub url: String,
+#[derive(Debug, Clone)]
+pub struct MathDisplay {
+    pub content: Segments,
 }
 
-// TODO: support all options
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Table {
-    pub header: TableRow,
-    pub rows: Vec<TableRow>,
+#[derive(Debug, Clone)]
+pub struct ListItem {
+    pub symbol: ListSymbol,
+    pub contents: Paragraphs,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct TableRow {
-    pub cells: Vec<Segments>,
+#[derive(Debug, Clone)]
+pub enum ListSymbol {
+    NoNum,
+    NumDot(usize),
+    NumParen(usize),
+    NumBrak(usize),
+    RomanDot(usize),
+    RomanParen(usize),
+    RomanBrak(usize),
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Image {
-    pub alt: String,
-    pub url: String,
+#[derive(Debug, Clone)]
+pub struct MathDelimited {
+    pub open: Segments,
+    pub body: Segments,
+    pub close: Segments,
 }
 
-//
+#[derive(Debug, Clone)]
+pub struct MathAttach {
+    pub base: Segments,
+    pub top: Option<Segments>,
+    pub bottom: Option<Segments>,
+}
 
-#[derive(Debug, Clone, PartialEq, Eq)]
+#[derive(Debug, Clone)]
 pub struct Env {
     pub kind: EnvKind,
     pub title: Option<Segments>,
-    pub children: Paragraphs,
+    pub contents: Paragraphs,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -180,47 +136,50 @@ pub enum EnvKind {
     Rem,
 }
 
-//
+impl EnvKind {
+    pub const LIST: [(EnvKind, &str); 13] = [
+        (EnvKind::Block, ""),
+        (EnvKind::Conj, "conj"),
+        (EnvKind::Axm, "axm"),
+        (EnvKind::Def, "def"),
+        (EnvKind::Prop, "prop"),
+        (EnvKind::Fml, "fml"),
+        (EnvKind::Lem, "lem"),
+        (EnvKind::Thm, "thm"),
+        (EnvKind::Cor, "cor"),
+        (EnvKind::Prf, "prf"),
+        (EnvKind::Ex, "ex"),
+        (EnvKind::Exc, "exc"),
+        (EnvKind::Rem, "rem"),
+    ];
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Enum {
-    pub kind: EnumKind,
-    pub children: Vec<Paragraph>,
+    pub fn name(&self) -> String {
+        Self::LIST
+            .iter()
+            .find(|(kind, _)| kind == self)
+            .map(|(_, name)| name.to_string())
+            .unwrap_or_else(|| panic!("unexpected env kind: {:?}", self))
+    }
+
+    pub fn from_name(name: &str) -> Option<Self> {
+        Self::LIST
+            .iter()
+            .find(|(_, n)| n == &name)
+            .map(|(kind, _)| kind.clone())
+    }
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum EnumKind {
-    NoNum,
-    Num {
-        num_kind: NumKind,
-        style: EnumNumStyle,
-    },
+#[derive(Debug, Clone)]
+pub struct Command {
+    pub name: String,
+    pub args: Vec<Arg>,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum NumKind {
-    Arabic,
-    Roman,
+#[derive(Debug, Clone)]
+pub struct Arg {
+    pub is_optional: bool,
+    pub content: Segments,
 }
 
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub enum EnumNumStyle {
-    Period,
-    Paren,
-    Square,
-}
-
-//
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct Quote {
-    pub children: Paragraphs,
-}
-
-//
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct CodeBlock {
-    pub lang: Option<String>,
-    pub code: String,
-}
+#[derive(Debug, Clone)]
+pub struct RawCommand(pub String);

@@ -1,5 +1,4 @@
 from typing import Any
-from typing import Type
 import json
 
 
@@ -49,28 +48,24 @@ def load_mod_dict(json: dict[str, Any]) -> ModDict:
     return d
 
 
-path = "./dictionary.txt"
-patch_path = "./dictionary_patch.json"
+# main
 
-with open(path, "r", encoding="utf-8") as f:
-    lines = f.readlines()
-    d = ModDict()
-    len = lines.__len__()
-    for i in range(len // 4):
-        name = lines[i * 4].strip()
-        code_point = int(lines[i * 4 + 1].strip(), base=10)
-        character = lines[i * 4 + 2].strip()
-        command = lines[i * 4 + 3].strip()
-        d.insert(name.split("."), character)
+default_path = "./dictionary_unicode.json"
+patch_path = "./dictionary_patch.json"
+out_path = "./dictionary.json"
+
+with open(default_path, "r", encoding="utf-8") as f:
+    source = f.read()
+    default_dict = json.loads(source)
+    d = load_mod_dict(default_dict)
 
     with open(patch_path, "r", encoding="utf-8") as f:
         source = f.read()
         as_dict = json.loads(source)
-        patch: ModDict = ModDict()
         patch = load_mod_dict(as_dict)
 
         d.patch(patch)
 
     # into json
-    with open("./dictionary.json", "w", encoding="utf-8") as f:
+    with open(out_path, "w", encoding="utf-8") as f:
         json.dump(d.to_dict(), f, indent=4, ensure_ascii=False)
