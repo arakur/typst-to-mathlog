@@ -10,12 +10,24 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     let dic = mathlog::Dictionary::read("./dictionary/dictionary.json")?;
 
+    let current_dir = std::env::current_dir()?.to_str().unwrap().to_string();
+
     let input_path = std::env::args().nth(1).expect("No input path");
-    // let input_path = "./example/example.typ";
+    // let input_path = "./example/example.typ".to_string();
+    let input_path = if input_path.starts_with("C:\\") || input_path.starts_with("D:\\") {
+        input_path
+    } else {
+        current_dir.clone() + "\\" + &*input_path
+    };
     let input = std::fs::read_to_string(input_path)?;
 
     let output_path = std::env::args().nth(2).expect("No output path");
-    // let output_path = "./example/example.md";
+    // let output_path = "./example/example.md".to_string();
+    let output_path = if output_path.starts_with("C:\\") || output_path.starts_with("D:\\") {
+        output_path
+    } else {
+        current_dir + "\\" + &*output_path
+    };
 
     let typst_stx = syntax::ast::Markup::from_untyped(&syntax::parse(&input))
         .ok_or("parse error in Typst code")?;

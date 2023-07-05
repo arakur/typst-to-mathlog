@@ -2,4 +2,5 @@
 /.vscode
 /.mypy_cache
 /release
+/release.py
 /release.zip
