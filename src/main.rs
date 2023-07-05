@@ -8,7 +8,12 @@ use typst::syntax::ast::AstNode;
 fn main() -> Result<(), Box<dyn std::error::Error>> {
     use typst::syntax;
 
-    let dic = mathlog::Dictionary::read("./dictionary/dictionary.json")?;
+    let current_exe = std::env::current_exe()?.to_str().unwrap().to_string();
+
+    let dictionary_path = "../../dictionary/dictionary.json".to_string();
+    let dictionary_path = current_exe + "\\" + &*dictionary_path;
+
+    let dic = mathlog::Dictionary::read(&dictionary_path)?;
 
     let current_dir = std::env::current_dir()?.to_str().unwrap().to_string();
 
