@@ -270,6 +270,8 @@ impl ParagraphWriter {
             typst::ast::Expr::Break(_) => Err(FromTypstError::unexpected_node("break")),
             typst::ast::Expr::Continue(_) => Err(FromTypstError::unexpected_node("continue")),
             typst::ast::Expr::Return(_) => Err(FromTypstError::unexpected_node("return")),
+            typst::ast::Expr::MathPrimes(_) => Err(FromTypstError::unexpected_node("math primes")),
+            typst::ast::Expr::Contextual(_) => Err(FromTypstError::unexpected_node("contextual")),
         }
     }
 
@@ -279,13 +281,13 @@ impl ParagraphWriter {
     }
 
     fn heading(&mut self, node: &typst::ast::Heading, dic: &Dictionary) -> FromTypstResult<()> {
-        let level = node.level().get();
+        let depth = node.depth().get();
         let body = node.body();
         let mut writer = SegmentWriter::new();
         writer.markup(&body, dic)?;
         let content = writer.export();
         self.push_segment(mathlog::Segment::Heading(mathlog::Heading {
-            level,
+            depth,
             content,
         }));
         self.push_paragraph();
@@ -378,8 +380,8 @@ impl ParagraphWriter {
                 typst::ast::Imports::Wildcard => import_str += "*",
                 typst::ast::Imports::Items(path) => {
                     import_str += &path
-                        .into_iter()
-                        .map(|id| id.get().to_string())
+                        .iter()
+                        .map(|item| item.bound_name().to_string())
                         .collect::<Vec<_>>()
                         .join(", ")
                 }
@@ -453,9 +455,11 @@ impl ParagraphWriter {
                     body = Some(paragraphs);
                 }
                 typst::ast::Arg::Named(named) => {
-                    let Some(ident) = named.expr_ident() else {
-                        todo!(); //TODO: handle error
-                    };
+                    // removed: https://github.com/typst/typst/commit/be49935753f0e37ae8e04fb53111e6f116c63f47 between 0.10.0 and 0.11.0
+                    //let Some(ident) = named.expr_ident() else {
+                    //    todo!(); //TODO: handle error
+                    //};
+                    let ident = named.name();
                     match &*ident.get().to_string() {
                         "body" => {
                             let mut writer = ParagraphWriter::new();
@@ -564,6 +568,8 @@ impl SegmentWriter {
             typst::ast::Expr::Continue(_) => Err(FromTypstError::unexpected_node("continue")),
             typst::ast::Expr::Return(_) => Err(FromTypstError::unexpected_node("return")),
             // _ => todo!("{:?}", node),
+            typst::ast::Expr::MathPrimes(_) => Err(FromTypstError::unexpected_node("math primes")),
+            typst::ast::Expr::Contextual(_) => Err(FromTypstError::unexpected_node("contextual")),
         }
     }
 
@@ -604,7 +610,12 @@ impl SegmentWriter {
     }
 
     fn raw(&mut self, node: &typst::ast::Raw) -> FromTypstResult<()> {
-        let s = node.text().to_string();
+        // removed: https://github.com/typst/typst/commit/030041466b5b8453ca23e43a6385f4592f78a56c between 0.10.0 and 0.11.0
+        // let s = node.text().to_string();
+        let s = node.lines()
+            .map(|text| text.get().to_string())
+            .collect::<Vec<String>>()
+            .join("\n");
         self.push_segment(mathlog::Segment::CodeInline(mathlog::CodeInline(s)));
         Ok(())
     }
