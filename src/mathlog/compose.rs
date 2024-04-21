@@ -89,7 +89,7 @@ impl Composer {
 
     fn heading(&mut self, heading: &Heading) {
         self.newline_if_not_empty();
-        self.add(&format!("{} ", "#".repeat(heading.level)));
+        self.add(&format!("{} ", "#".repeat(heading.depth)));
         self.segments(&heading.content);
     }
 

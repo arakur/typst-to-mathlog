@@ -34,7 +34,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         current_dir + "\\" + &*output_path
     };
 
-    let typst_stx = syntax::ast::Markup::from_untyped(&syntax::parse(&input))
+    let binding = syntax::parse(&input);
+    let typst_stx = syntax::ast::Markup::from_untyped(&binding)
         .ok_or("parse error in Typst code")?;
 
     let mathlog_stx = mathlog::ast::Syntax::from_typst(&typst_stx, &dic)?;

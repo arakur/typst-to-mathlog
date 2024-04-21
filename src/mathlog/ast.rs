@@ -51,7 +51,7 @@ pub enum Segment {
 
 #[derive(Debug, Clone)]
 pub struct Heading {
-    pub level: usize,
+    pub depth: usize,
     pub content: Segments,
 }
 
@@ -137,7 +137,7 @@ pub enum EnvKind {
 }
 
 impl EnvKind {
-    pub const LIST: [(EnvKind, &str); 13] = [
+    pub const LIST: [(EnvKind, &'static str); 13] = [
         (EnvKind::Block, ""),
         (EnvKind::Conj, "conj"),
         (EnvKind::Axm, "axm"),
